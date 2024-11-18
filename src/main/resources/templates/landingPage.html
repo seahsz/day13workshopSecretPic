@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <h1>Enter your Details to Access the Secret Page</h1>
+
+    <form method="POST" action="/login" data-th-object="${userCredential}">
+        <table>
+            <tbody>
+                <tr>
+                    <td>Username:</td>
+                    <td>
+                        <input type="text" data-th-field="*{username}">
+                    </td>
+                    <td>
+                        <span data-th-if="${#fields.hasErrors('username')}" data-th-errors="*{username}"
+                            data-th-errorclass="error"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td>
+                        <input type="password" data-th-field="*{password}">
+                    </td>
+                    <td>
+                        <span data-th-if="${#fields.hasErrors('password')}" data-th-errors="*{password}"
+                            data-th-errorclass="error">
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="submit">Login</button>
+                    </td>
+                    <td>
+                        <button type="reset">Clear</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+
+</body>
+
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <h1>Enter your Details to Access the Secret Page with Captcha</h1>
+
+    <form method="POST" action="/login" data-th-object="${userCredential}">
+        <table>
+            <tbody>
+                <tr>
+                    <td>Username:</td>
+                    <td>
+                        <input type="text" data-th-field="*{username}">
+                    </td>
+                    <td>
+                        <span data-th-if="${#fields.hasErrors('username')}" data-th-errors="*{username}"
+                            data-th-errorclass="error"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td>
+                        <input type="password" data-th-field="*{password}">
+                    </td>
+                    <td>
+                        <span data-th-if="${#fields.hasErrors('password')}" data-th-errors="*{password}"
+                            data-th-errorclass="error">
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>To continue, enter the sum of the following 2 numbers:
+                        <span data-th-text="${captchaNum1}"></span>
+                        +
+                        <span data-th-text="${captchaNum2}"></span>
+                    </td>
+                    <td>
+                        <input type="number" data-th-name="captchaResult">
+                    </td>
+                </tr>
+                <tr>
+                    <td data-th-if="${#fields.hasErrors('global')}">
+                        <ul>
+                            <li th:each="err : ${#fields.errors('global')}" th:text="${err}" class="error"></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="submit">Login</button>
+                    </td>
+                    <td>
+                        <button type="reset">Clear</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+
+</body>
+
+</html>
